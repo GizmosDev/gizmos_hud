@@ -96,23 +96,21 @@ The only parameter in `hide()` is the optional boolean `animated` that specifies
 
 ## Samples
 
-<img src="https://github.com/GizmosDev/gizmos_hud/raw/master/assets/iOSDemo.gif" alt="iOS Demo" width="319" height="638" />
-&nbsp;
-<img src="https://github.com/GizmosDev/gizmos_hud/raw/master/assets/AndroidDemo.gif" alt="Android Demo" width="297" height="638" />
+<img src="https://github.com/GizmosDev/gizmos_hud/raw/master/assets/iOSDemo.gif" alt="iOS Demo" width="319" height="638" />&nbsp;<img src="https://github.com/GizmosDev/gizmos_hud/raw/master/assets/AndroidDemo.gif" alt="Android Demo" width="297" height="638" />
 
 ### Example
 
 ```dart
-	fancyToastHud.show(
-      context: topBuildContext,
-      child: child,
-      hudDecoration: fancyHudDecoration,
-      position: HudPosition.top,
-      duration: Duration(seconds: 3),
-      width: 280,
-      height: 50,
-      top: 120,
-    );
+fancyToastHud.show(
+  context: topBuildContext,
+  child: child,
+  hudDecoration: fancyHudDecoration,
+  position: HudPosition.top,
+  duration: Duration(seconds: 3),
+  width: 280,
+  height: 50,
+  top: 120,
+);
 ```
 
 Please see the example app in this package for a full example.
@@ -127,7 +125,7 @@ Please see the example app in this package for a full example.
 
    ***
    
-#[![gizmosdev-logo]][gizmos.dev] gizmos.dev
+# [![gizmosdev-logo]][gizmos.dev] gizmos.dev
 
 <!-- Link references -->
 

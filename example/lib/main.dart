@@ -19,7 +19,7 @@ import 'helpers/fancy_toast_details.dart';
 // displayed on top of everything, regardless of the navigation in place, or
 // how deep we are in a navigation stack.
 /// Global reference to our top level buildContext.
-BuildContext topBuildContext;
+late BuildContext topBuildContext;
 MyCustomHuds huds = MyCustomHuds();
 
 /// Whether to randomize which fancy toast to display. This is just so I can
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
 
 /// HomePage
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -137,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
         }
         previousIndex = randIndex;
 
-        FancyToastDetails details = randomToasts[randIndex];
+        var details = randomToasts[randIndex];
 
         huds.showFancyToast(
           details.message,

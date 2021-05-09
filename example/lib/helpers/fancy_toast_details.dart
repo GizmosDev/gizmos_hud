@@ -14,5 +14,5 @@ class FancyToastDetails {
   final Icon icon;
   final Color backgroundColor;
 
-  FancyToastDetails({this.message, this.icon, this.backgroundColor});
+  FancyToastDetails({required this.message, required this.icon, required this.backgroundColor});
 }

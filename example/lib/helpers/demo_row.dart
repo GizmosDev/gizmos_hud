@@ -21,10 +21,10 @@ class DemoRow extends StatelessWidget {
   final VoidCallback show;
 
   /// Our `hide` button's onTap code
-  final VoidCallback hide;
+  final VoidCallback? hide;
 
   /// Instantiate a DemoRow
-  DemoRow({@required this.title, this.info, @required this.show, this.hide});
+  DemoRow({required this.title, required this.info, required this.show, this.hide});
 
   @override
   Widget build(BuildContext context) {

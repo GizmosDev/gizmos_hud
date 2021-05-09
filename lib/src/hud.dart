@@ -42,8 +42,8 @@ class Hud {
   );
 
   // Fields
-  OverlayState _overlayState;
-  OverlayEntry _overlayEntry;
+  OverlayState? _overlayState;
+  OverlayEntry? _overlayEntry;
   double _opacity = 0.0;
 
   // Properties
@@ -85,23 +85,21 @@ class Hud {
   /// For [HudPosition.center], [width] and [height] are required, [top],
   /// [bottom], [left], [right] should be omitted.
   Hud show({
-    @required BuildContext context,
-    @required Widget child,
+    required BuildContext context,
+    required Widget child,
     HudPosition position = HudPosition.custom,
-    Duration duration,
+    Duration? duration,
     bool isBlocking = false,
-    Color backgroundColor = Colors.transparent,
-    Color hudColor,
-    BoxDecoration hudDecoration,
-    double left,
-    double top,
-    double right,
-    double bottom,
-    double width,
-    double height,
+    Color? backgroundColor = Colors.transparent,
+    Color? hudColor,
+    BoxDecoration? hudDecoration,
+    double? left,
+    double? top,
+    double? right,
+    double? bottom,
+    double? width,
+    double? height,
   }) {
-    assert(context != null, 'You must specific a valid context.');
-    assert(child != null, 'You must include a child widget.');
     assert(hudColor == null || hudDecoration == null, 'You can\'t specify a hudColor and hudDecoration, choose one or the other.');
 
     switch (position) {
@@ -176,26 +174,26 @@ class Hud {
   /// Internal method that does the work of displaying the Hud. See [show()]
   /// for details on the parameters.
   void _showOverlay({
-    @required BuildContext context,
-    @required Widget child,
+    required BuildContext context,
+    required Widget child,
     HudPosition position = HudPosition.custom,
-    Duration duration,
+    Duration? duration,
     bool isBlocking = false,
-    Color backgroundColor = Colors.transparent,
-    Color hudColor,
-    BoxDecoration hudDecoration,
-    double left,
-    double top,
-    double right,
-    double bottom,
-    double width,
-    double height,
+    Color? backgroundColor = Colors.transparent,
+    Color? hudColor,
+    BoxDecoration? hudDecoration,
+    double? left,
+    double? top,
+    double? right,
+    double? bottom,
+    double? width,
+    double? height,
   }) async {
     _overlayEntry?.remove();
     _overlayEntry = null;
 
     _overlayState = Overlay.of(context);
-    _overlayEntry = OverlayEntry(
+    var savedOverlayEntry = OverlayEntry(
         opaque: false,
         builder: (BuildContext context) {
           var mediaQuery = MediaQuery.of(context);
@@ -208,14 +206,14 @@ class Hud {
               bottom = null;
               if (left == null && right == null) {
                 // center horizontally
-                left = (contextWidth - width) / 2;
+                left = (contextWidth - (width ?? 0)) / 2;
                 right = null;
               }
               break;
 
             case HudPosition.center:
-              top = (contextHeight - height) / 2;
-              left = (contextWidth - width) / 2;
+              top = (contextHeight - (height ?? 0)) / 2;
+              left = (contextWidth - (width ?? 0)) / 2;
               bottom = null;
               right = null;
               break;
@@ -225,7 +223,7 @@ class Hud {
               bottom = bottom ?? mediaQuery.viewInsets.bottom + 100;
               if (left == null && right == null) {
                 // center horizontally
-                left = (contextWidth - width) / 2;
+                left = (contextWidth - (width ?? 0)) / 2;
                 right = null;
               }
               break;
@@ -267,12 +265,12 @@ class Hud {
 
           return stack;
         });
+    _overlayEntry = savedOverlayEntry;
 
     // Note: savedOverlayEntry is a copy of our _overlayEntry so we can abort
     // the fade in/out animations, auto-hide, if _overlayEntry changes (due to
     // a subsequent show() call)
-    var savedOverlayEntry = _overlayEntry;
-    _overlayState.insert(_overlayEntry);
+    _overlayState?.insert(savedOverlayEntry);
 
     await Future<dynamic>.delayed(Duration(milliseconds: 50));
     if (savedOverlayEntry != _overlayEntry) {

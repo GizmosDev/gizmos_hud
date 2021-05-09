@@ -1,10 +1,16 @@
-name: example
-description: An example Flutter project to showcase the gizmos_hud package.
-version: 0.0.1-alpha.1
+name: gizmos_hud_example
+description: An example Flutter project to showcase the `gizmos_hud` package.
+author: Dave Wood
+homepage: https://gizmos.dev/
+repository: https://github.com/GizmosDev/gizmos_hud
+issue_tracker: https://github.com/GizmosDev/gizmos_hud/issues
+
+publish_to: "none"
+
+version: 0.1.0-nullsafety.1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
-  flutter: ">=1.12.13"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -13,6 +19,7 @@ dependencies:
   # Stricter than Effective Dart
   pedantic: ^1.11.0
 
+  # Load our local `gizmos_hud` package.
   gizmos_hud:
     path: ../
 

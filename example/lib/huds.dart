@@ -43,10 +43,6 @@ class MyCustomHuds {
 
   /// Show our ToastHud with the specified message.
   void showToast(String message) {
-    if (topBuildContext == null) {
-      return;
-    }
-
     var mediaQuery = MediaQuery.of(topBuildContext);
     var contextWidth = mediaQuery.size.width;
 
@@ -70,11 +66,7 @@ class MyCustomHuds {
   }
 
   /// Show our FancyToastHud with the specified message.
-  void showFancyToast(String message, {Icon icon, Color backgroundColor}) {
-    if (topBuildContext == null) {
-      return;
-    }
-
+  void showFancyToast(String message, {Icon? icon, Color? backgroundColor}) {
     var mediaQuery = MediaQuery.of(topBuildContext);
     var contextWidth = mediaQuery.size.width;
 
@@ -100,9 +92,9 @@ class MyCustomHuds {
     );
 
     var fancyHudDecoration = BoxDecoration(
-      color: (backgroundColor ?? Colors.yellow[50]).withOpacity(0.75),
+      color: (backgroundColor ?? Colors.yellow[50] ?? Colors.yellow).withOpacity(0.75),
       borderRadius: BorderRadius.circular(10.0),
-      border: Border.all(width: 2.0, color: (backgroundColor ?? Colors.yellow[50])),
+      border: Border.all(width: 2.0, color: (backgroundColor ?? Colors.yellow[50] ?? Colors.yellow)),
     );
 
     _fancyToastHud.show(
@@ -124,10 +116,6 @@ class MyCustomHuds {
 
   /// Show our Confetti overlay.
   void showConfetti() {
-    if (topBuildContext == null) {
-      return;
-    }
-
     var mediaQuery = MediaQuery.of(topBuildContext);
     var contextWidth = mediaQuery.size.width;
     var contextHeight = mediaQuery.size.height;
@@ -159,10 +147,6 @@ class MyCustomHuds {
 
   /// Show our BusyHud, styled based on the current platform.
   void showBusy() {
-    if (topBuildContext == null) {
-      return;
-    }
-
     ++_busyCount;
     var mediaQuery = MediaQuery.of(topBuildContext);
     var contextWidth = mediaQuery.size.width;
@@ -202,10 +186,6 @@ class MyCustomHuds {
 
   /// Show our FancyToastHud with the specified message.
   void showDialog(String title, String message) {
-    if (topBuildContext == null) {
-      return;
-    }
-
     var mediaQuery = MediaQuery.of(topBuildContext);
     var contextWidth = mediaQuery.size.width;
     var contextHeight = mediaQuery.size.height;

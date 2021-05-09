@@ -107,8 +107,7 @@ class MyCustomHuds {
     BoxDecoration fancyHudDecoration = BoxDecoration(
       color: (backgroundColor ?? Colors.yellow[50]).withOpacity(0.75),
       borderRadius: BorderRadius.circular(10.0),
-      border:
-          Border.all(width: 2.0, color: (backgroundColor ?? Colors.yellow[50])),
+      border: Border.all(width: 2.0, color: (backgroundColor ?? Colors.yellow[50])),
     );
 
     _fancyToastHud.show(
@@ -171,9 +170,7 @@ class MyCustomHuds {
 
     var sideLength = contextWidth * 0.33;
 
-    var activityIndicator = Platform.isIOS || Platform.isMacOS
-        ? CupertinoActivityIndicator(radius: sideLength * 0.25)
-        : CircularProgressIndicator();
+    var activityIndicator = Platform.isIOS || Platform.isMacOS ? CupertinoActivityIndicator(radius: sideLength * 0.25) : CircularProgressIndicator();
     var child = Center(child: activityIndicator);
 
     _busyHud.show(

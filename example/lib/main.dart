@@ -12,7 +12,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'huds.dart';
-import 'fancy_toast_details.dart';
+import 'helpers/demo_row.dart';
+import 'helpers/fancy_toast_details.dart';
 
 // Keep a reference to the top level BuildContext so our Huds can easily be
 // displayed on top of everything, regardless of the navigation in place, or
@@ -62,104 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
-  /// Convenience method to make consistent looking buttons
-  Widget sample(
-      {@required String title,
-      String info,
-      @required VoidCallback show,
-      VoidCallback hide}) {
-    // layout/size calculations
-    var mediaQuery = MediaQuery.of(context);
-    var contextWidth = mediaQuery.size.width;
-
-    // magic numbers etc
-    var buttonLength = 50.0;
-    var marginLength = 4.0;
-    var buttonColor = Colors.grey.withOpacity(0.5);
-
-    var showButton = InkWell(
-        splashColor: Colors.blue,
-        onTap: show,
-        child: Container(
-          width: buttonLength,
-          height: buttonLength,
-          margin: EdgeInsets.all(marginLength),
-          color: buttonColor,
-          child: Icon(Icons.play_arrow, color: Colors.black),
-        ));
-
-    var hideButton = (hide != null)
-        ? InkWell(
-            splashColor: Colors.blue,
-            onTap: hide,
-            child: Container(
-              width: buttonLength,
-              height: buttonLength,
-              margin: EdgeInsets.all(marginLength),
-              color: buttonColor,
-              child: Icon(Icons.stop, color: Colors.black),
-            ))
-        : SizedBox(
-            width: buttonLength + marginLength * 2,
-            height: buttonLength + marginLength * 2,
-          );
-
-    var buttons = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        showButton,
-        hideButton,
-      ],
-    );
-
-    var header = Text(
-      title,
-      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-      maxLines: 1,
-    );
-
-    var body = Container(
-      width: (contextWidth - (buttonLength * 2) - (marginLength * 4)) * 0.9,
-      child: Text(
-        info,
-        style: TextStyle(color: Colors.grey, fontWeight: FontWeight.normal),
-        maxLines: 10,
-        softWrap: true,
-      ),
-    );
-
-    var row = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        body,
-        buttons,
-      ],
-    );
-
-    var column = Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        header,
-        row,
-      ],
-    );
-
-    var container = Container(
-      color: Colors.transparent,
-      margin: EdgeInsets.all(marginLength),
-      padding: EdgeInsets.all(marginLength),
-      child: column,
-    );
-
-    return container;
-  }
-
   @override
   Widget build(BuildContext context) {
     topBuildContext = context;
@@ -168,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var children = List<Widget>();
 
     /// Toast
-    children.add(sample(
+    children.add(DemoRow(
       title: 'Simple Toast Message',
       info: 'A toast message that appears near the bottom of the screen, and '
           'disappears 3 seconds later. It can be hidden early if needed.',
@@ -187,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
 
     /// Fancy Toast
-    children.add(sample(
+    children.add(DemoRow(
       title: 'Fancy Toast Message',
       info: 'A toast message with an icon that appears near the top of the '
           'screen, and disappears 3 seconds later. It can be hidden early if '
@@ -265,10 +168,9 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
 
     /// Busy
-    children.add(sample(
+    children.add(DemoRow(
       title: 'Non-Blocking Activity Indicator',
-      info:
-          'A non-blocking, indeterminate activity indicator. Appears on screen '
+      info: 'A non-blocking, indeterminate activity indicator. Appears on screen '
           'until dismissed, here with the hide button, but in practise it would'
           ' be dismissed when the long running task completes. gizmos_hud can '
           'create a blocking Activity Indicator, by passing `true` to '
@@ -282,7 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
 
     /// Dialog
-    children.add(sample(
+    children.add(DemoRow(
       title: 'Custom Dialog',
       info: 'This presents a custom, blocking dialog widget. It includes a '
           'button that allows the user to dismiss the dialog after they\'ve '
@@ -290,13 +192,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ' offer a choice, or trigger a series of dialogs, perhaps as an '
           'on-boarding process.',
       show: () {
-        huds.showDialog('A Custom Dialog',
-            'Please submit feature requests, and or improvements to the package\'s Github page.');
+        huds.showDialog('A Custom Dialog', 'Please submit feature requests, and or improvements to the package\'s Github page.');
       },
     ));
 
     /// Confetti
-    children.add(sample(
+    children.add(DemoRow(
       title: 'Confetti!',
       info: 'An overlay with a transparent, animated GIF covering the full '
           'screen. It automatically disappears 3 seconds later, but can be '
@@ -311,8 +212,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var header = Container(
       color: Colors.blue.withOpacity(0.2),
       height: 40.0,
-      child: Center(
-          child: Text('Visit https://gizmos.dev/ for more information.')),
+      child: Center(child: Text('Visit https://gizmos.dev/ for more information.')),
     );
 
     var listView = ListView(
@@ -327,14 +227,10 @@ class _MyHomePageState extends State<MyHomePage> {
       child: listView,
     ));
 
-    var column = Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          header,
-          scrollView,
-        ]);
+    var column = Column(mainAxisAlignment: MainAxisAlignment.start, mainAxisSize: MainAxisSize.max, crossAxisAlignment: CrossAxisAlignment.center, children: [
+      header,
+      scrollView,
+    ]);
 
     var body = column;
 

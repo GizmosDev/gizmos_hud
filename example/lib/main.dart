@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
     topBuildContext = context;
 
     /// List of our example buttons
-    var children = List<Widget>();
+    var children = <Widget>[];
 
     /// Toast
     children.add(DemoRow(
@@ -96,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
           'screen, and disappears 3 seconds later. It can be hidden early if '
           'needed.',
       show: () {
-        var randomToasts = List<FancyToastDetails>();
+        var randomToasts = <FancyToastDetails>[];
 
         // Create a few random toasts to pick from
         randomToasts.add(

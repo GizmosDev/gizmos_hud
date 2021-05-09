@@ -13,6 +13,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Stricter than Effective Dart
+  pedantic: ^1.11.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

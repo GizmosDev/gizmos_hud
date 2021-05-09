@@ -10,6 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Stricter than Effective Dart
+  pedantic: ^1.11.0
+
   gizmos_hud:
     path: ../
 

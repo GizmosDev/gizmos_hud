@@ -99,7 +99,7 @@ class MyCustomHuds {
       ],
     );
 
-    BoxDecoration fancyHudDecoration = BoxDecoration(
+    var fancyHudDecoration = BoxDecoration(
       color: (backgroundColor ?? Colors.yellow[50]).withOpacity(0.75),
       borderRadius: BorderRadius.circular(10.0),
       border: Border.all(width: 2.0, color: (backgroundColor ?? Colors.yellow[50])),
@@ -132,7 +132,7 @@ class MyCustomHuds {
     var contextWidth = mediaQuery.size.width;
     var contextHeight = mediaQuery.size.height;
 
-    Image confetti = Image(
+    var confetti = Image(
       image: AssetImage('assets/confetti.gif'),
       width: contextWidth,
       height: contextHeight,
@@ -221,7 +221,7 @@ class MyCustomHuds {
       maxLines: 10,
     );
 
-    BoxDecoration buttonDecoration = BoxDecoration(
+    var buttonDecoration = BoxDecoration(
       color: Colors.transparent,
       borderRadius: BorderRadius.circular(5.0),
       border: Border.all(width: 1.0, color: Colors.blue),
@@ -245,7 +245,7 @@ class MyCustomHuds {
       ),
     );
 
-    BoxDecoration dialogDecoration = BoxDecoration(
+    var dialogDecoration = BoxDecoration(
       color: Colors.white.withOpacity(0.8),
       borderRadius: BorderRadius.circular(10.0),
       border: Border.all(width: 3.0, color: Colors.blue),

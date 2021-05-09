@@ -33,9 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'gizmos_hud Examples',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: MyHomePage(title: 'gizmos_hud Examples'),
     );
   }
@@ -73,8 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
     /// Toast
     children.add(DemoRow(
       title: 'Simple Toast Message',
-      info: 'A toast message that appears near the bottom of the screen, and '
-          'disappears 3 seconds later. It can be hidden early if needed.',
+      info: 'A toast message that appears near the bottom of the screen, and disappears 3 seconds later. It can be hidden early if needed.',
       show: () {
         huds.showToast('Our simple toast message!');
 
@@ -92,9 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
     /// Fancy Toast
     children.add(DemoRow(
       title: 'Fancy Toast Message',
-      info: 'A toast message with an icon that appears near the top of the '
-          'screen, and disappears 3 seconds later. It can be hidden early if '
-          'needed.',
+      info: 'A toast message with an icon that appears near the top of the screen, and disappears 3 seconds later. It can be hidden early if needed.',
       show: () {
         var randomToasts = <FancyToastDetails>[];
 
@@ -103,40 +98,28 @@ class _MyHomePageState extends State<MyHomePage> {
           FancyToastDetails(
             message: 'Please file any bugs you see',
             backgroundColor: Colors.blue,
-            icon: Icon(
-              Icons.bug_report,
-              color: Colors.yellow,
-            ),
+            icon: Icon(Icons.bug_report, color: Colors.yellow),
           ),
         );
         randomToasts.add(
           FancyToastDetails(
             message: 'Payment successful',
             backgroundColor: Colors.green,
-            icon: Icon(
-              Icons.monetization_on,
-              color: Colors.white,
-            ),
+            icon: Icon(Icons.monetization_on, color: Colors.white),
           ),
         );
         randomToasts.add(
           FancyToastDetails(
             message: 'Warning: Battery low',
             backgroundColor: Colors.orange,
-            icon: Icon(
-              Icons.battery_alert,
-              color: Colors.white,
-            ),
+            icon: Icon(Icons.battery_alert, color: Colors.white),
           ),
         );
         randomToasts.add(
           FancyToastDetails(
             message: 'Error: Unable to reach the Internet',
             backgroundColor: Colors.red,
-            icon: Icon(
-              Icons.offline_bolt,
-              color: Colors.black,
-            ),
+            icon: Icon(Icons.offline_bolt, color: Colors.black),
           ),
         );
 
@@ -171,8 +154,8 @@ class _MyHomePageState extends State<MyHomePage> {
     children.add(DemoRow(
       title: 'Non-Blocking Activity Indicator',
       info: 'A non-blocking, indeterminate activity indicator. Appears on screen '
-          'until dismissed, here with the hide button, but in practise it would'
-          ' be dismissed when the long running task completes. gizmos_hud can '
+          'until dismissed, here with the hide button, but in practise it would '
+          'be dismissed when the long running task completes. gizmos_hud can '
           'create a blocking Activity Indicator, by passing `true` to '
           '`isBlocking`, but it\'s not as interesting for a demo.',
       show: () {
@@ -188,8 +171,8 @@ class _MyHomePageState extends State<MyHomePage> {
       title: 'Custom Dialog',
       info: 'This presents a custom, blocking dialog widget. It includes a '
           'button that allows the user to dismiss the dialog after they\'ve '
-          'read the contents. The dialog could have other options for the user,'
-          ' offer a choice, or trigger a series of dialogs, perhaps as an '
+          'read the contents. The dialog could have other options for the user, '
+          'offer a choice, or trigger a series of dialogs, perhaps as an '
           'on-boarding process.',
       show: () {
         huds.showDialog('A Custom Dialog', 'Please submit feature requests, and or improvements to the package\'s Github page.');
@@ -227,17 +210,20 @@ class _MyHomePageState extends State<MyHomePage> {
       child: listView,
     ));
 
-    var column = Column(mainAxisAlignment: MainAxisAlignment.start, mainAxisSize: MainAxisSize.max, crossAxisAlignment: CrossAxisAlignment.center, children: [
-      header,
-      scrollView,
-    ]);
+    var column = Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        header,
+        scrollView,
+      ],
+    );
 
     var body = column;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: AppBar(title: Text(widget.title)),
       body: body,
     );
   }

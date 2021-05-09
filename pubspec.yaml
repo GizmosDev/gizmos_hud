@@ -1,8 +1,5 @@
 name: gizmos_hud
-description: >-
-  A Flutter package for displaying custom HUD's, Toasts, or other screen overlays.
-  Any widget can be displayed, in any position on the screen for a completely customized
-  interface.
+description: A Flutter package for displaying custom HUD's, Toasts, or other screen overlays.
 version: 0.0.1-alpha.1
 homepage: https://gizmos.dev/
 repository: https://github.com/GizmosDev/gizmos_hud

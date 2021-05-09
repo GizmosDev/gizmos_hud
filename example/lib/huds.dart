@@ -43,18 +43,14 @@ class MyCustomHuds {
 
   /// Show our ToastHud with the specified message.
   void showToast(String message) {
-    if (topBuildContext == null) return;
+    if (topBuildContext == null) {
+      return;
+    }
 
     var mediaQuery = MediaQuery.of(topBuildContext);
     var contextWidth = mediaQuery.size.width;
 
-    var child = Center(
-        child: Text(
-      message,
-      style: TextStyle(
-        color: Colors.white,
-      ),
-    ));
+    var child = Center(child: Text(message, style: TextStyle(color: Colors.white)));
 
     _toastHud.show(
       context: topBuildContext,
@@ -75,7 +71,9 @@ class MyCustomHuds {
 
   /// Show our FancyToastHud with the specified message.
   void showFancyToast(String message, {Icon icon, Color backgroundColor}) {
-    if (topBuildContext == null) return;
+    if (topBuildContext == null) {
+      return;
+    }
 
     var mediaQuery = MediaQuery.of(topBuildContext);
     var contextWidth = mediaQuery.size.width;
@@ -96,10 +94,7 @@ class MyCustomHuds {
       children: [
         iconContainer,
         Center(
-          child: Text(
-            message,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+          child: Text(message, style: TextStyle(fontWeight: FontWeight.bold)),
         ),
       ],
     );
@@ -129,7 +124,9 @@ class MyCustomHuds {
 
   /// Show our Confetti overlay.
   void showConfetti() {
-    if (topBuildContext == null) return;
+    if (topBuildContext == null) {
+      return;
+    }
 
     var mediaQuery = MediaQuery.of(topBuildContext);
     var contextWidth = mediaQuery.size.width;
@@ -162,7 +159,9 @@ class MyCustomHuds {
 
   /// Show our BusyHud, styled based on the current platform.
   void showBusy() {
-    if (topBuildContext == null) return;
+    if (topBuildContext == null) {
+      return;
+    }
 
     ++_busyCount;
     var mediaQuery = MediaQuery.of(topBuildContext);
@@ -186,7 +185,10 @@ class MyCustomHuds {
   /// Hide our BusyHud, with an optional [animated] fade out.
   void hideBusy({bool animated = true}) {
     --_busyCount;
-    if (_busyCount > 0) return;
+    if (_busyCount > 0) {
+      return;
+    }
+
     _busyCount = 0;
     _busyHud.hide(animated: animated);
   }
@@ -200,7 +202,9 @@ class MyCustomHuds {
 
   /// Show our FancyToastHud with the specified message.
   void showDialog(String title, String message) {
-    if (topBuildContext == null) return;
+    if (topBuildContext == null) {
+      return;
+    }
 
     var mediaQuery = MediaQuery.of(topBuildContext);
     var contextWidth = mediaQuery.size.width;

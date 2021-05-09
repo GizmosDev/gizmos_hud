@@ -10,6 +10,5 @@ import 'package:flutter_test/flutter_test.dart';
 // import 'package:example/main.dart';
 
 void main() {
-  testWidgets(
-      'Nothing to test in this example', (WidgetTester tester) async {});
+  testWidgets('Nothing to test in this example', (WidgetTester tester) async {});
 }

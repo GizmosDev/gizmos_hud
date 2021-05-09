@@ -12,7 +12,6 @@
 /// screen for a completely customized interface.
 library gizmos_hud;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -103,44 +102,32 @@ class Hud {
   }) {
     assert(context != null, 'You must specific a valid context.');
     assert(child != null, 'You must include a child widget.');
-    assert(
-        hudColor == null || hudDecoration == null,
-        'You can\'t specify a hudColor and hudDecoration, choose one or the '
-        'other.');
+    assert(hudColor == null || hudDecoration == null, 'You can\'t specify a hudColor and hudDecoration, choose one or the other.');
+
     switch (position) {
       case HudPosition.top:
-        assert(width != null || (left != null && right != null),
-            'When using HudPosition.top, you must specify a width or both left and right parameters.');
-        assert(width == null || left == null || right == null,
-            'When using HudPosition.top, can\'t specify all three width, left and right values.');
-        assert(
-            bottom == null, 'When using HudPosition.top, bottom is not used.');
+        assert(width != null || (left != null && right != null), 'When using HudPosition.top, you must specify a width or both left and right parameters.');
+        assert(width == null || left == null || right == null, 'When using HudPosition.top, can\'t specify all three width, left and right values.');
+        assert(bottom == null, 'When using HudPosition.top, bottom is not used.');
         break;
+
       case HudPosition.center:
-        assert(
-            width != null && height != null,
-            'When using HudPosition.center, you must specify both a width and '
-            'a height.');
+        assert(width != null && height != null, 'When using HudPosition.center, you must specify both a width and a height.');
         assert(top == null, 'When using HudPosition.center, top is not used.');
-        assert(bottom == null,
-            'When using HudPosition.center, bottom is not used.');
-        assert(
-            left == null, 'When using HudPosition.center, left is not used.');
-        assert(
-            right == null, 'When using HudPosition.center, right is not used.');
+        assert(bottom == null, 'When using HudPosition.center, bottom is not used.');
+        assert(left == null, 'When using HudPosition.center, left is not used.');
+        assert(right == null, 'When using HudPosition.center, right is not used.');
         break;
+
       case HudPosition.bottom:
-        assert(width != null || (left != null && right != null),
-            'When using HudPosition.bottom, you must specify a width or both left and right parameters.');
-        assert(width == null || left == null || right == null,
-            'When using HudPosition.bottom, can\'t specify all three width, left and right values.');
+        assert(width != null || (left != null && right != null), 'When using HudPosition.bottom, you must specify a width or both left and right parameters.');
+        assert(width == null || left == null || right == null, 'When using HudPosition.bottom, can\'t specify all three width, left and right values.');
         assert(top == null, 'When using HudPosition.bottom, top is not used.');
         break;
+
       case HudPosition.custom:
-        assert(left == null || right == null || width == null,
-            'When using HudPosition.custom, you need to specify either left, right, or width.');
-        assert(top == null || bottom == null || height == null,
-            'When using HudPosition.custom, you need to specify either top, bottom, or height.');
+        assert(left == null || right == null || width == null, 'When using HudPosition.custom, you need to specify either left, right, or width.');
+        assert(top == null || bottom == null || height == null, 'When using HudPosition.custom, you need to specify either top, bottom, or height.');
         break;
     }
 
@@ -176,9 +163,10 @@ class Hud {
       _opacity = 0.0;
       _overlayEntry?.markNeedsBuild();
 
-      await Future<dynamic>.delayed(
-          animationDuration + Duration(milliseconds: 50));
-      if (savedOverlayEntry != _overlayEntry) return;
+      await Future<dynamic>.delayed(animationDuration + Duration(milliseconds: 50));
+      if (savedOverlayEntry != _overlayEntry) {
+        return;
+      }
     }
 
     _overlayEntry?.remove();
@@ -224,12 +212,14 @@ class Hud {
                 right = null;
               }
               break;
+
             case HudPosition.center:
               top = (contextHeight - height) / 2;
               left = (contextWidth - width) / 2;
               bottom = null;
               right = null;
               break;
+
             case HudPosition.bottom:
               top = null;
               bottom = bottom ?? mediaQuery.viewInsets.bottom + 100;
@@ -239,6 +229,7 @@ class Hud {
                 right = null;
               }
               break;
+
             case HudPosition.custom:
               break;
           }
@@ -268,9 +259,7 @@ class Hud {
             ),
           );
 
-          var background = isBlocking
-              ? ModalBarrier(color: backgroundColor, dismissible: false)
-              : SizedBox.shrink();
+          var background = isBlocking ? ModalBarrier(color: backgroundColor, dismissible: false) : SizedBox.shrink();
 
           var stack = Stack(
             children: [background, positioned],
@@ -286,17 +275,24 @@ class Hud {
     _overlayState.insert(_overlayEntry);
 
     await Future<dynamic>.delayed(Duration(milliseconds: 50));
-    if (savedOverlayEntry != _overlayEntry) return;
+    if (savedOverlayEntry != _overlayEntry) {
+      return;
+    }
+
     // Fade in
     _opacity = 1.0;
     _overlayEntry?.markNeedsBuild();
 
-    // if no duration was specified, the hud should remain visible until hide()
-    // is called
-    if (duration == null) return;
+    // if no duration was specified, the hud should remain visible until hide() is called
+    if (duration == null) {
+      return;
+    }
 
     await Future<dynamic>.delayed(duration);
-    if (savedOverlayEntry != _overlayEntry) return;
+    if (savedOverlayEntry != _overlayEntry) {
+      return;
+    }
+
     hide(animated: true);
   }
 }

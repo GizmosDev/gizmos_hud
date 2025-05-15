@@ -8,6 +8,8 @@
 .buildlog/
 .history
 .svn/
+migrate_working_dir/
+
 
 # IntelliJ related
 *.iml
@@ -15,10 +17,13 @@
 *.iws
 .idea/
 
+
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
-#.vscode/
+#**/.vscode/
+**/.vscode/*settings.json
+
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -28,7 +33,24 @@
 .packages
 .pub-cache/
 .pub/
-build/
+**/build/
+
+
+# Web related
+**/lib/generated_plugin_registrant.dart
+
+
+# Symbolication related
+app.*.symbols
+
+
+# Obfuscation related
+app.*.map.json
+
+
+# Testing
+**/coverage/
+
 
 # Android related
 **/android/**/gradle-wrapper.jar
@@ -38,8 +60,10 @@ build/
 **/android/gradlew.bat
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
+**/android/key.properties
 
-# iOS/XCode related
+
+# Xcode related
 **/ios/**/*.mode1v3
 **/ios/**/*.mode2v3
 **/ios/**/*.moved-aside
@@ -66,13 +90,44 @@ build/
 **/ios/Flutter/flutter_export_environment.sh
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
+**/macos/**/*.mode1v3
+**/macos/**/*.mode2v3
+**/macos/**/*.moved-aside
+**/macos/**/*.pbxuser
+**/macos/**/*.perspectivev3
+**/macos/**/*sync/
+**/macos/**/.sconsign.dblite
+**/macos/**/.tags*
+**/macos/**/.vagrant/
+**/macos/**/DerivedData/
+**/macos/**/Icon?
+**/macos/**/Pods/
+**/macos/**/.symlinks/
+**/macos/**/profile
+**/macos/**/xcuserdata
+**/macos/.generated/
+**/macos/Flutter/App.framework
+**/macos/Flutter/Flutter.framework
+**/macos/Flutter/Flutter.podspec
+**/macos/Flutter/Generated.xcconfig
+**/macos/Flutter/app.flx
+**/macos/Flutter/app.zip
+**/macos/Flutter/flutter_assets/
+**/macos/Flutter/flutter_export_environment.sh
+**/macos/ServiceDefinitions.json
+**/macos/Runner/GeneratedPluginRegistrant.*
+
 
 # Exceptions to above rules.
+!**/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !**/ios/**/default.mode1v3
 !**/ios/**/default.mode2v3
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
-!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+!**/macos/**/default.mode1v3
+!**/macos/**/default.mode2v3
+!**/macos/**/default.pbxuser
+!**/macos/**/default.perspectivev3
 
 ## Above this line should be standard to all Flutter apps, below contains
 ## customizations for this app

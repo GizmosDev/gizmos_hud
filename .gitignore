@@ -73,3 +73,11 @@ build/
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+## Above this line should be standard to all Flutter apps, below contains
+## customizations for this app
+
+# DW: I normally check the pubspec.lock file in to keep track of dependency
+# versions but it's not needed for a package and/or sample app, so ignoring it
+# here to reduce any commit noise.
+pubspec.lock

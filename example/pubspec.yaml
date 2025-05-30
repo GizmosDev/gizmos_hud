@@ -12,15 +12,12 @@ version: 0.1.0-nullsafety.1
 publish_to: "none"
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0"
+  sdk: ">=3.6.0 <4.0.0"
+  flutter: ">=3.27.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
-  # Stricter than Effective Dart
-  pedantic: ^1.11.0
 
   # Load our local `gizmos_hud` package.
   gizmos_hud:
@@ -30,6 +27,9 @@ dev_dependencies:
   # Testing
   flutter_test:
     sdk: flutter
+
+  # Linting
+  flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true

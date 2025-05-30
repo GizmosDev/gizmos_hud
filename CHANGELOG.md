@@ -13,3 +13,9 @@
   * Updated various deprecated API's to their current replacements
   * Updated build scripts (Gradle etc)
   * Dropped `-nullsafety` pre-release tag in the version number
+
+
+## 0.3.1 - 2025/05/30
+
+### Notes:
+  * Static analyis updates/clean up

@@ -30,14 +30,14 @@ class Hud {
   /// A preset decoration that can be used Huds, dark version intended to have
   /// light content.
   static BoxDecoration defaultDarkHudDecoration = BoxDecoration(
-    color: Colors.black.withOpacity(0.6),
+    color: Colors.black.withValues(alpha: 0.6),
     borderRadius: BorderRadius.circular(10.0),
   );
 
   /// A preset decoration that can be used Huds, light version intended to have
   /// dark content.
   static BoxDecoration defaultLightHudDecoration = BoxDecoration(
-    color: Colors.black.withOpacity(0.2),
+    color: Colors.black.withValues(alpha: 0.2),
     borderRadius: BorderRadius.circular(10.0),
   );
 

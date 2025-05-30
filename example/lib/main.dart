@@ -193,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
 
     var header = Container(
-      color: Colors.blue.withOpacity(0.2),
+      color: Colors.blue.withValues(alpha: 0.2),
       height: 40.0,
       child: Center(child: Text('Visit https://gizmos.dev/ for more information.')),
     );

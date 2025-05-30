@@ -92,7 +92,7 @@ class MyCustomHuds {
     );
 
     var fancyHudDecoration = BoxDecoration(
-      color: (backgroundColor ?? Colors.yellow[50] ?? Colors.yellow).withOpacity(0.75),
+      color: (backgroundColor ?? Colors.yellow[50] ?? Colors.yellow).withValues(alpha: 0.75),
       borderRadius: BorderRadius.circular(10.0),
       border: Border.all(width: 2.0, color: (backgroundColor ?? Colors.yellow[50] ?? Colors.yellow)),
     );
@@ -226,7 +226,7 @@ class MyCustomHuds {
     );
 
     var dialogDecoration = BoxDecoration(
-      color: Colors.white.withOpacity(0.8),
+      color: Colors.white.withValues(alpha: 0.8),
       borderRadius: BorderRadius.circular(10.0),
       border: Border.all(width: 3.0, color: Colors.blue),
     );
@@ -254,7 +254,7 @@ class MyCustomHuds {
     _dialog.show(
       context: topBuildContext,
       child: dialogContainer,
-      backgroundColor: Colors.black.withOpacity(0.5),
+      backgroundColor: Colors.black.withValues(alpha: 0.5),
       position: HudPosition.center,
       isBlocking: true,
       width: contextWidth,

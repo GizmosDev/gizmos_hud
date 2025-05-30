@@ -35,7 +35,7 @@ class DemoRow extends StatelessWidget {
     // magic numbers etc
     var buttonLength = 50.0;
     var marginLength = 4.0;
-    var buttonColor = Colors.grey.withOpacity(0.5);
+    var buttonColor = Colors.grey.withValues(alpha: 0.5);
 
     var showButton = InkWell(
         splashColor: Colors.blue,

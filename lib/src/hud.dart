@@ -12,9 +12,7 @@
 /// screen for a completely customized interface.
 library;
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 /// Enum for the hud's base position.
 enum HudPosition {

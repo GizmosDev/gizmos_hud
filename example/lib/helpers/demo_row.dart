@@ -24,7 +24,7 @@ class DemoRow extends StatelessWidget {
   final VoidCallback? hide;
 
   /// Instantiate a DemoRow
-  DemoRow({required this.title, required this.info, required this.show, this.hide});
+  const DemoRow({super.key, required this.title, required this.info, required this.show, this.hide});
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +80,7 @@ class DemoRow extends StatelessWidget {
       maxLines: 1,
     );
 
-    var body = Container(
+    var body = SizedBox(
       width: (contextWidth - (buttonLength * 2) - (marginLength * 4)) * 0.9,
       child: Text(
         info,

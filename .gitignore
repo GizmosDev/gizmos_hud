@@ -34,6 +34,8 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 **/build/
+**/Flutter/ephemeral/
+**/Flutter/.last_build_id
 
 
 # Web related
@@ -116,6 +118,7 @@ app.*.map.json
 **/macos/Flutter/flutter_export_environment.sh
 **/macos/ServiceDefinitions.json
 **/macos/Runner/GeneratedPluginRegistrant.*
+**/Podfile.lock
 
 
 # Exceptions to above rules.

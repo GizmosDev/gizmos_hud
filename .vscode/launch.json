@@ -4,7 +4,7 @@
             "name": "Gizmos Hud Example",
             "request": "launch",
             "type": "dart",
-            "program": "lib/main.dart",
+            "program": "example/lib/main.dart",
             "args": [
             ],
         },

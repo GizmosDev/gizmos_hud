@@ -1,0 +1,88 @@
+# .gitattributes
+#  see: https://www.git-scm.com/docs/gitattributes
+#       https://www.gloomycorner.com/line-ending-configuration-in-git/
+
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Explicitly declare text files you want to always be normalized and converted to native line endings on checkout.
+# - code
+*.c text
+*.cpp text
+*.m text
+*.swift text
+*.dart text
+*.py text
+*.h text
+*.cs text
+*.csx text
+*.php text
+*.js text
+*.java text
+# - web
+*.html text
+*.htm text
+*.css text
+*.less text
+*.md text
+*.txt text
+*.text text
+# - data
+*.json text
+*.xml text
+*.yaml text
+*.yml text
+*.tf text
+# - misc
+*.log text
+*.env.* text
+*.lock text
+*.properties text
+*.graphqls text
+Dockerfile text
+Jenkinsfile text
+
+# Declare files that will always have CRLF line endings on checkout.
+*.sln text eol=crlf
+
+# Declare files that will always have LF line endings on checkout.
+*.sh text eol=lf
+
+# Denote all files that are truly binary and should not be modified.
+# - images
+*.ico binary
+*.png binary
+*.jpg binary
+*.jepg binary
+*.gif binary
+*.svg binary
+*.ai binary
+*.eps binary
+*.pdf binary
+# - archives
+*.zip binary
+*.gz binary
+*.gzip binary
+*.rar binary
+*.pkg binary
+*.dmg binary
+*.bin binary
+*.jar binary
+# - cryptography
+*.crt binary
+*.cer binary
+*.certSigningRequest binary
+*.pem binary
+*.jks binary
+*.p8 binary
+*.p12 binary
+*.keychain binary
+
+# - Xcode
+*.mobileprovision binary
+*.provisionprofile binary
+*.plist text
+*.xc* text
+*.pbxproj text
+# - misc
+*.obj binary

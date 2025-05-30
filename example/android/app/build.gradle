@@ -1,14 +1,20 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+
+    // START: FlutterFire Configuration
+    // id "com.google.gms.google-services"
+    // id "com.google.firebase.crashlytics"
+    // END: FlutterFire Configuration
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
         localProperties.load(reader)
     }
-}
-
-def flutterRoot = localProperties.getProperty('flutter.sdk')
-if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -21,47 +27,112 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+// Load signing settings
+// def keystoreProperties = new Properties()
+// def keystorePropertiesFile = rootProject.file('key.properties')
+// if (keystorePropertiesFile.exists()) {
+//     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+// }
+
+// Load some extra build settings
+def buildProperties = new Properties()
+def buildPropertiesFile = rootProject.file('build.properties')
+if (buildPropertiesFile.exists()) {
+    buildPropertiesFile.withReader('UTF-8') { reader ->
+        buildProperties.load(reader)
+    }
+}
+
+def androidApplicationId = buildProperties.getProperty('applicationId')
+def androidApplicationIdDev = buildProperties.getProperty('applicationIdDev')
+
+def androidCompileSdkVersion = buildProperties.getProperty('compileSdkVersion')
+if (androidCompileSdkVersion == null) {
+    androidCompileSdkVersion = flutter.compileSdkVersion
+}
+def androidMinSdkVersion = buildProperties.getProperty('minSdkVersion')
+if (androidMinSdkVersion == null) {
+    androidMinSdkVersion = flutter.minSdkVersion
+}
+def androidTargetSdkVersion = buildProperties.getProperty('targetSdkVersion')
+if (androidTargetSdkVersion == null) {
+    androidTargetSdkVersion = flutter.targetSdkVersion
+}
+def androidNdkVersion = buildProperties.getProperty('ndkVersion')
+if (androidNdkVersion == null) {
+    androidNdkVersion = flutter.ndkVersion
+}
 
 android {
-    compileSdkVersion 28
+    namespace androidApplicationId
+    compileSdkVersion androidCompileSdkVersion.toInteger()
+    ndkVersion = androidNdkVersion
+
+    def javaVersion = JavaVersion.VERSION_11
+    compileOptions {
+        sourceCompatibility javaVersion
+        targetCompatibility javaVersion
+    }
+
+    kotlinOptions {
+        jvmTarget = javaVersion.toString()
+    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
-    }
 
-    lintOptions {
-        disable 'InvalidPackage'
+        dev {
+            res.srcDir 'src/dev/res'
+        }
+
+        prod {
+            res.srcDir 'src/prod/res'
+        }
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.example"
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion androidMinSdkVersion.toInteger()
+        targetSdkVersion androidTargetSdkVersion.toInteger()
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId androidApplicationId
+    }
+
+    signingConfigs {
+        release {
+            // keyAlias keystoreProperties['keyAlias']
+            // keyPassword keystoreProperties['keyPassword']
+            // storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            // storePassword keystoreProperties['storePassword']
+        }
     }
 
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+        debug {
             signingConfig signingConfigs.debug
+        }
+
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    flavorDimensions "environment"
+    productFlavors {
+        dev {
+            dimension "environment"
+            versionNameSuffix "-dev"
+            applicationId androidApplicationIdDev
+        }
+
+        prod {
+            dimension "environment"
+            applicationId androidApplicationId
         }
     }
 }
 
 flutter {
     source '../..'
-}
-
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }

@@ -1,31 +1,74 @@
-buildscript {
-    ext.kotlin_version = '1.3.50'
-    repositories {
-        google()
-        jcenter()
+// Load some extra build settings
+def buildProperties = new Properties()
+def buildPropertiesFile = rootProject.file('build.properties')
+if (buildPropertiesFile.exists()) {
+    buildPropertiesFile.withReader('UTF-8') { reader ->
+        buildProperties.load(reader)
     }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
+}
+def androidCompileSdkVersion = buildProperties.getProperty('compileSdkVersion')
+if (androidCompileSdkVersion == null) {
+    androidCompileSdkVersion = flutter.compileSdkVersion
+}
+def androidMinSdkVersion = buildProperties.getProperty('minSdkVersion')
+if (androidMinSdkVersion == null) {
+    androidMinSdkVersion = flutter.minSdkVersion
+}
+def androidTargetSdkVersion = buildProperties.getProperty('targetSdkVersion')
+if (androidTargetSdkVersion == null) {
+    androidTargetSdkVersion = flutter.targetSdkVersion
+}
+def androidNdkVersion = buildProperties.getProperty('ndkVersion')
+if (androidNdkVersion == null) {
+    androidNdkVersion = flutter.ndkVersion
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
+    // DW: See: https://github.com/flutter/flutter/issues/125181#issuecomment-1555034383
+    afterEvaluate {
+        // check if android block is available
+        if (it.hasProperty('android')) {
+            def manifest = new XmlSlurper().parse(file(it.android.sourceSets.main.manifest.srcFile))
+            def packageName = manifest.@package.text()
+            println("Modifying ${packageName}")
+            if (it.android.namespace == null) {
+                android.namespace = packageName
+            }
+
+            def javaVersion = JavaVersion.VERSION_11
+            android {
+                compileSdkVersion androidCompileSdkVersion.toInteger()
+                defaultConfig {
+                    targetSdkVersion androidTargetSdkVersion.toInteger()
+                    minSdkVersion androidMinSdkVersion.toInteger()
+                    ndkVersion = androidNdkVersion
+                }
+                compileOptions {
+                    sourceCompatibility javaVersion
+                    targetCompatibility javaVersion
+                }
+                tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+                    kotlinOptions {
+                        jvmTarget = javaVersion.toString()
+                    }
+                }
+            }
+        }
+    }
 }
 subprojects {
     project.evaluationDependsOn(':app')
 }
 
-task clean(type: Delete) {
+tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }

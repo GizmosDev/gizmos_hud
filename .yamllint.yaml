@@ -1,0 +1,6 @@
+---
+extends: default
+
+rules:
+  comments: disable
+  line-length: disable

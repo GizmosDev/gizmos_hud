@@ -1,0 +1,30 @@
+---
+# See Dependabot documentation for all configuration options:
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+version: 2
+updates:
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: main
+    reviewers:
+      - "DaveWoodCom"
+    labels:
+      - "dependabot"
+      - "dependencies"
+      - "github-actions"
+
+  # Pub (Dart and Flutter)
+  - package-ecosystem: "pub"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: main
+    reviewers:
+      - "DaveWoodCom"
+    labels:
+      - "dependabot"
+      - "dependencies"
+      - "pub"

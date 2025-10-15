@@ -9,8 +9,6 @@ updates:
     schedule:
       interval: "weekly"
     target-branch: main
-    reviewers:
-      - "DaveWoodCom"
     labels:
       - "dependabot"
       - "dependencies"
@@ -22,8 +20,6 @@ updates:
     schedule:
       interval: "weekly"
     target-branch: main
-    reviewers:
-      - "DaveWoodCom"
     labels:
       - "dependabot"
       - "dependencies"

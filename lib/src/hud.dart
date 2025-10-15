@@ -15,29 +15,18 @@ library;
 import 'package:flutter/material.dart';
 
 /// Enum for the hud's base position.
-enum HudPosition {
-  top,
-  center,
-  bottom,
-  custom,
-}
+enum HudPosition { top, center, bottom, custom }
 
 /// Our main Hud class.
 class Hud {
   // Constants
   /// A preset decoration that can be used Huds, dark version intended to have
   /// light content.
-  static BoxDecoration defaultDarkHudDecoration = BoxDecoration(
-    color: Colors.black.withValues(alpha: 0.6),
-    borderRadius: BorderRadius.circular(10.0),
-  );
+  static BoxDecoration defaultDarkHudDecoration = BoxDecoration(color: Colors.black.withValues(alpha: 0.6), borderRadius: BorderRadius.circular(10.0));
 
   /// A preset decoration that can be used Huds, light version intended to have
   /// dark content.
-  static BoxDecoration defaultLightHudDecoration = BoxDecoration(
-    color: Colors.black.withValues(alpha: 0.2),
-    borderRadius: BorderRadius.circular(10.0),
-  );
+  static BoxDecoration defaultLightHudDecoration = BoxDecoration(color: Colors.black.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(10.0));
 
   // Fields
   OverlayState? _overlayState;
@@ -192,77 +181,66 @@ class Hud {
 
     _overlayState = Overlay.of(context);
     var savedOverlayEntry = OverlayEntry(
-        opaque: false,
-        builder: (BuildContext context) {
-          var mediaQuery = MediaQuery.of(context);
-          var contextWidth = mediaQuery.size.width;
-          var contextHeight = mediaQuery.size.height;
+      opaque: false,
+      builder: (BuildContext context) {
+        var mediaQuery = MediaQuery.of(context);
+        var contextWidth = mediaQuery.size.width;
+        var contextHeight = mediaQuery.size.height;
 
-          switch (position) {
-            case HudPosition.top:
-              top = top ?? mediaQuery.viewInsets.top + 100;
-              bottom = null;
-              if (left == null && right == null) {
-                // center horizontally
-                left = (contextWidth - (width ?? 0)) / 2;
-                right = null;
-              }
-              break;
-
-            case HudPosition.center:
-              top = (contextHeight - (height ?? 0)) / 2;
+        switch (position) {
+          case HudPosition.top:
+            top = top ?? mediaQuery.viewInsets.top + 100;
+            bottom = null;
+            if (left == null && right == null) {
+              // center horizontally
               left = (contextWidth - (width ?? 0)) / 2;
-              bottom = null;
               right = null;
-              break;
+            }
+            break;
 
-            case HudPosition.bottom:
-              top = null;
-              bottom = bottom ?? mediaQuery.viewInsets.bottom + 100;
-              if (left == null && right == null) {
-                // center horizontally
-                left = (contextWidth - (width ?? 0)) / 2;
-                right = null;
-              }
-              break;
+          case HudPosition.center:
+            top = (contextHeight - (height ?? 0)) / 2;
+            left = (contextWidth - (width ?? 0)) / 2;
+            bottom = null;
+            right = null;
+            break;
 
-            case HudPosition.custom:
-              break;
-          }
+          case HudPosition.bottom:
+            top = null;
+            bottom = bottom ?? mediaQuery.viewInsets.bottom + 100;
+            if (left == null && right == null) {
+              // center horizontally
+              left = (contextWidth - (width ?? 0)) / 2;
+              right = null;
+            }
+            break;
 
-          var hudContainer = Container(
-            width: width,
-            height: height,
-            color: (hudDecoration != null) ? null : hudColor,
-            decoration: hudDecoration,
-            child: child,
-          );
+          case HudPosition.custom:
+            break;
+        }
 
-          var positioned = Positioned(
-            left: left,
-            top: top,
-            right: right,
-            bottom: bottom,
-            width: width,
-            height: height,
-            child: Material(
-              color: Colors.transparent,
-              child: AnimatedOpacity(
-                opacity: _opacity,
-                duration: animationDuration,
-                child: hudContainer,
-              ),
-            ),
-          );
+        var hudContainer = Container(width: width, height: height, color: (hudDecoration != null) ? null : hudColor, decoration: hudDecoration, child: child);
 
-          var background = isBlocking ? ModalBarrier(color: backgroundColor, dismissible: false) : SizedBox.shrink();
+        var positioned = Positioned(
+          left: left,
+          top: top,
+          right: right,
+          bottom: bottom,
+          width: width,
+          height: height,
+          child: Material(
+            color: Colors.transparent,
+            child: AnimatedOpacity(opacity: _opacity, duration: animationDuration, child: hudContainer),
+          ),
+        );
 
-          var stack = Stack(
-            children: [background, positioned],
-          );
+        var background = isBlocking ? ModalBarrier(color: backgroundColor, dismissible: false) : SizedBox.shrink();
 
-          return stack;
-        });
+        var stack = Stack(children: [background, positioned]);
+
+        return stack;
+      },
+    );
     _overlayEntry = savedOverlayEntry;
 
     // Note: savedOverlayEntry is a copy of our _overlayEntry so we can abort

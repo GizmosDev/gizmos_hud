@@ -1,15 +1,29 @@
-include ':app'
+pluginManagement {
+    def flutterSdkPath = {
+        def properties = new Properties()
+        file("local.properties").withInputStream { properties.load(it) }
+        def flutterSdkPath = properties.getProperty("flutter.sdk")
+        assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
+        return flutterSdkPath
+    }()
 
-def flutterProjectRoot = rootProject.projectDir.parentFile.toPath()
+    includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
 
-def plugins = new Properties()
-def pluginsFile = new File(flutterProjectRoot.toFile(), '.flutter-plugins')
-if (pluginsFile.exists()) {
-    pluginsFile.withReader('UTF-8') { reader -> plugins.load(reader) }
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
 }
 
-plugins.each { name, path ->
-    def pluginDirectory = flutterProjectRoot.resolve(path).resolve('android').toFile()
-    include ":$name"
-    project(":$name").projectDir = pluginDirectory
+plugins {
+    id "dev.flutter.flutter-plugin-loader" version "1.0.0"
+
+    // DW: Latest version of the Android Gradle Plugin (AGP) can be found here: https://developer.android.com/studio/releases/gradle-plugin#versioning-update
+    id "com.android.application" version "8.13.0" apply false
+
+    // DW: Latest version of Kotlin can be found here: https://kotlinlang.org/docs/home.html
+    id "org.jetbrains.kotlin.android" version "2.2.20" apply false
 }
+
+include ":app"

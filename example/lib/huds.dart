@@ -46,7 +46,9 @@ class MyCustomHuds {
     var mediaQuery = MediaQuery.of(topBuildContext);
     var contextWidth = mediaQuery.size.width;
 
-    var child = Center(child: Text(message, style: TextStyle(color: Colors.white)));
+    var child = Center(
+      child: Text(message, style: TextStyle(color: Colors.white)),
+    );
 
     _toastHud.show(
       context: topBuildContext,

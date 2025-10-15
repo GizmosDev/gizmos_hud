@@ -21,7 +21,7 @@
   * Static analyis updates/clean up
 
 
-## 0.4.0 - 2025/10/15
+## 0.4.1 - 2025/10/15
 
 ### Notes:
   * Bumped dependencies

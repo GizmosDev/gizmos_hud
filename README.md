@@ -105,7 +105,7 @@ The only parameter in `hide()` is the optional boolean `animated` that specifies
 
 ## Screenshots
 
-<img src="https://github.com/GizmosDev/gizmos_hud/raw/master/assets/iOSDemo.gif" alt="iOS Demo" width="319" height="638" />&nbsp;<img src="https://github.com/GizmosDev/gizmos_hud/raw/master/assets/AndroidDemo.gif" alt="Android Demo" width="297" height="638" />
+<img src="https://github.com/GizmosDev/gizmos_hud/raw/main/assets/iOSDemo.gif" alt="iOS Demo" width="319" height="638" />&nbsp;<img src="https://github.com/GizmosDev/gizmos_hud/raw/main/assets/AndroidDemo.gif" alt="Android Demo" width="297" height="638" />
 
 
 ## Example
@@ -141,7 +141,7 @@ Please see the example app in this package for a full example.
 <!-- Link references -->
 
 [pub.dev]: https://pub.dev/packages/gizmos_hud
-[license]: https://github.com/GizmosDev/gizmos_hud/blob/master/LICENSE
+[license]: https://github.com/GizmosDev/gizmos_hud/blob/main/LICENSE
 [repo]: https://github.com/GizmosDev/gizmos_hud
 [badge-repo]: https://img.shields.io/badge/GitHub-gizmos__hud-blue.svg?style=flat
 [badge-pubdev]: https://img.shields.io/pub/v/gizmos_hud.svg?label=gizmos_settings_screen
